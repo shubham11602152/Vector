@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "../ui-blocks/header";
 import type { ReactNode } from "react";
 
