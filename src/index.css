@@ -118,3 +118,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes testimonial-marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.testimonial-marquee {
+  display: inline-flex;
+  min-width: max-content;
+  animation: testimonial-marquee 32s linear infinite;
+  will-change: transform;
+}
+.testimonial-marquee:hover {
+  animation-play-state: paused;
+}

@@ -1,13 +1,15 @@
 import "./App.css";
-import { LoginForm } from "./components/login-form";
+
+import { Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/landing-page";
+import LoginPage from "./pages/login-page";
 
 function App() {
   return (
-    <>
-      <div className="flex min-h-svh flex-col items-center justify-center">
-        <LoginForm />
-      </div>
-    </>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<LoginPage />} />
+    </Routes>
   );
 }
 
