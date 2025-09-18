@@ -1,4 +1,3 @@
-import React from "react";
 import VerticalLayout from "@/components/layouts/vertical-layout";
 import { LoginForm } from "@/components/login-form";
 
