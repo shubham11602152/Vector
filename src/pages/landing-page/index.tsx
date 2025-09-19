@@ -7,14 +7,18 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import TestimonialSection from "./components/testimonial-section";
-import HeroSection from "./components/hero-section";
+import { HeroBackground, HeroContent } from "./components/hero-section";
 import PricingSection from "./components/pricing-section";
 
 export default function LandingPage() {
   return (
     <VerticalLayout>
+      {/* Silk background covers header + hero */}
+      <div className="absolute inset-0 -z-10 w-full h-[700px] md:h-[700px] invert brightness-80 dark:invert-0 ">
+        <HeroBackground />
+      </div>
       <section className="flex flex-col items-center justify-center min-h-[60vh] gap-8 py-12">
-        <HeroSection />
+        <HeroContent />
       </section>
       <section className="flex flex-col items-center justify-center min-h-[60vh] gap-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 w-full ">
@@ -67,9 +71,7 @@ export default function LandingPage() {
           <TestimonialSection />
         </section>
       </section>
-      {/* <section className="w-full max-w-5xl mx-auto py-20" id="pricing"> */}
       <PricingSection />
-      {/* </section> */}
     </VerticalLayout>
   );
 }

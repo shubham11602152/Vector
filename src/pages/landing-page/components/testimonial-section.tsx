@@ -1,3 +1,4 @@
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Card,
   CardContent,
@@ -69,11 +70,18 @@ export default function TestimonialSection() {
               style={{ boxSizing: "border-box" }}
             >
               <CardHeader className="flex flex-row items-center gap-4 pb-2">
-                <img
-                  src={t.avatar}
-                  alt={t.name}
-                  className="w-12 h-12 rounded-full object-cover border"
-                />
+                <Avatar className="w-12 h-12 rounded-full object-cover border">
+                  <AvatarImage
+                    src={t.avatar}
+                    alt={t.name}
+                    className="w-12 h-12 rounded-full object-cover border"
+                  />
+                  <AvatarFallback>
+                    {t.name
+                      .split(" ")
+                      .reduce((acc, curr) => acc + curr.charAt(0), "")}
+                  </AvatarFallback>
+                </Avatar>
                 <div>
                   <CardTitle className="text-base leading-tight">
                     {t.name}
