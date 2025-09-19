@@ -7,7 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 export default function Header() {
   const navigate = useNavigate();
   return (
-    <header className="sticky top-0 z-40 w-full bg-background/80 backdrop-blur border-b border-border">
+    <header className="sticky top-0 z-40 w-full bg-background/20 backdrop-blur border-b border-border">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
         <div className="font-bold text-xl tracking-tight select-none">
