@@ -1,5 +1,6 @@
-import Header from "../ui-blocks/header";
 import type { ReactNode } from "react";
+import Footer from "../ui-blocks/footer";
+import Header from "../ui-blocks/header";
 
 type VerticalLayoutProps = {
   children: ReactNode;
@@ -12,6 +13,7 @@ export default function VerticalLayout({ children }: VerticalLayoutProps) {
       <main className="container min-h-[calc(100vh-4rem)] mx-auto px-4 py-8">
         {children}
       </main>
+      <Footer />
     </>
   );
 }
