@@ -1,4 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Mail } from "lucide-react";
+import { workshops, portfolioServices } from "./data";
+
 export function WorkshopsGrid() {
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -42,10 +46,6 @@ export function PortfolioServicesGrid() {
     </div>
   );
 }
-
-import { Button } from "@/components/ui/button";
-import { Mail } from "lucide-react";
-import { workshops, portfolioServices } from "./data";
 
 export function WorkshopsTable() {
   return (
