@@ -1,5 +1,4 @@
 import VerticalLayout from "@/components/layouts/vertical-layout";
-import React from "react";
 import TestimonialSection from "./components/testimonial-section";
 import { HeroBackground, HeroContent } from "./components/hero-section";
 import PricingSection from "./components/pricing-section";
