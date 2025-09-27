@@ -66,7 +66,7 @@ function PricingCard({ plan }: { plan: PricingPlan }) {
   return (
     <Card
       className={`flex flex-col h-full ${
-        plan.highlight ? "border-2 border-primary shadow-lg scale-105" : ""
+        plan.highlight ? "border-2 border-primary shadow-lg md:scale-105" : ""
       }`}
     >
       <CardHeader>
