@@ -1,10 +1,17 @@
 import VerticalLayout from "@/components/layouts/vertical-layout";
 import TestimonialSection from "./components/testimonial-section";
 import { HeroBackground, HeroContent } from "./components/hero-section";
+import { useNavigate } from "react-router-dom";
 import PricingSection from "./components/pricing-section";
 import ServicesSection from "./components/services-section/index";
 
-export default function LandingPage() {
+function LandingPage() {
+  const navigate = useNavigate();
+
+  function handleGetStarted() {
+    navigate("/onboarding");
+  }
+
   return (
     <VerticalLayout>
       {/* Silk background covers header + hero */}
@@ -12,7 +19,8 @@ export default function LandingPage() {
         <HeroBackground />
       </div>
       <section className="flex flex-col items-center justify-center min-h-[60vh] gap-8 py-12">
-        <HeroContent />
+        {/* Pass handler to HeroContent for Get Started button */}
+        <HeroContent onGetStarted={handleGetStarted} />
       </section>
       <ServicesSection />
 
@@ -26,3 +34,5 @@ export default function LandingPage() {
     </VerticalLayout>
   );
 }
+
+export default LandingPage;

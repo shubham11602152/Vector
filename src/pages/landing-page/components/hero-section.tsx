@@ -13,7 +13,11 @@ function HeroBackground() {
   );
 }
 
-function HeroContent() {
+interface HeroContentProps {
+  onGetStarted?: () => void;
+}
+
+function HeroContent({ onGetStarted }: HeroContentProps) {
   return (
     <>
       <h1 className="text-5xl font-extrabold tracking-tight text-balance max-w-2xl text-center">
@@ -25,7 +29,7 @@ function HeroContent() {
         clarify your goals, and plot a clear path forward, so every move counts.
       </p>
       <div className="flex gap-4">
-        <Button size="lg" className="mt-4">
+        <Button size="lg" className="mt-4" onClick={onGetStarted}>
           Get Started
         </Button>
         <Button size="lg" variant="outline" className="mt-4">
