@@ -1,5 +1,6 @@
 import Silk from "@/components/effects/background/Silk";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 function HeroBackground() {
   return (
@@ -14,6 +15,7 @@ function HeroBackground() {
 }
 
 function HeroContent() {
+  const navigate = useNavigate();
   return (
     <>
       <h1 className="text-5xl font-extrabold tracking-tight text-balance max-w-2xl text-center">
@@ -25,7 +27,13 @@ function HeroContent() {
         clarify your goals, and plot a clear path forward, so every move counts.
       </p>
       <div className="flex gap-4">
-        <Button size="lg" className="mt-4">
+        <Button
+          size="lg"
+          className="mt-4"
+          onClick={() => {
+            navigate("/dashboard");
+          }}
+        >
           Get Started
         </Button>
         <Button size="lg" variant="outline" className="mt-4">
