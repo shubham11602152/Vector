@@ -4,11 +4,17 @@ import { HeroBackground, HeroContent } from "./components/hero-section";
 import { useNavigate } from "react-router-dom";
 import PricingSection from "./components/pricing-section";
 import ServicesSection from "./components/services-section/index";
+import useAppContext from "@/context/useAppContext";
 
 function LandingPage() {
   const navigate = useNavigate();
+  const { isAuthenticated } = useAppContext();
 
   function handleGetStarted() {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+      return;
+    }
     navigate("/onboarding");
   }
 
