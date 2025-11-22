@@ -8,7 +8,7 @@ import VerticalLayout from "@/components/layouts/vertical-layout";
 export default function OnboardingFlow() {
   const [step, setStep] = useState<"type" | "profile" | "education">("type");
   const [type, setType] = useState<OnboardingType | null>(null);
-  const [profileData, setProfileData] = useState<object | null>(null);
+  const [, setProfileData] = useState<object | null>(null);
 
   function handleTypeSelect(selected: OnboardingType) {
     setType(selected);
