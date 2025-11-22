@@ -1,5 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { School, Building2, User } from "lucide-react";
+import { School, User } from "lucide-react";
 
 export type OnboardingType = "student" | "institute";
 
