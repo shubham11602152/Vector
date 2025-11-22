@@ -12,6 +12,7 @@ function App() {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/onboarding" element={<OnboardingFlow />} />
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/career-map" element={<DashboardPage />} />
       <Route path="/skill-tracker" element={<DashboardPage />} />
@@ -19,7 +20,6 @@ function App() {
       <Route path="/mentor" element={<DashboardPage />} />
       <Route path="/opportunity" element={<DashboardPage />} />
       <Route path="*" element={<NotFoundPage />} />
-      <Route path="/onboarding" element={<OnboardingFlow />} />
     </Routes>
   );
 }
