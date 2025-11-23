@@ -17,8 +17,8 @@ export default function VerticalLayout({
     <>
       {!hideHeader && <Header />}
       <main
-        className={`container min-h-[calc(100vh-1rem)] mx-auto ${
-          !hideHeader && !hideFooter && "px-4 py-8"
+        className={`container min-h-[calc(100vh-1rem)] mx-auto px-4 ${
+          !hideHeader && !hideFooter && "py-8"
         }`}
       >
         {children}

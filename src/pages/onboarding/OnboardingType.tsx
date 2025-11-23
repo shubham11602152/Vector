@@ -12,7 +12,7 @@ export default function OnboardingTypeSelector({ onSelect }: Props) {
       <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
         Select Onboarding Type
       </h2>
-      <form className="flex flex-row gap-6 justify-center">
+      <form className="flex md:flex-row flex-col gap-6 justify-center">
         <label className="flex flex-col items-center gap-3 p-4 rounded-lg border border-2 cursor-pointer hover:border-primary transition-all min-w-[220px]">
           <input
             type="radio"
