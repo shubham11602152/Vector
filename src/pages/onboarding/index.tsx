@@ -4,20 +4,21 @@ import type { OnboardingType } from "./OnboardingType";
 import ProfileForm from "./ProfileForm";
 import EducationForm from "./EducationForm";
 import VerticalLayout from "@/components/layouts/vertical-layout";
+import useAppContext from "@/context/useAppContext";
 
 export default function OnboardingFlow() {
-  const [step, setStep] = useState<"type" | "profile" | "education">("type");
+  const { navigate } = useAppContext();
+  const [step] = useState<"type" | "profile" | "education">("type");
   const [type, setType] = useState<OnboardingType | null>(null);
   const [, setProfileData] = useState<object | null>(null);
 
   function handleTypeSelect(selected: OnboardingType) {
     setType(selected);
-    setStep("profile");
+    navigate(`/login?type=${selected}`);
   }
 
   function handleProfileSubmit(data: object) {
     setProfileData(data);
-    setStep("education");
   }
 
   function handleEducationSubmit(data: object) {

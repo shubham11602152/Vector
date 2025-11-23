@@ -19,8 +19,14 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({
   const [user, setUser] = React.useState<AppContextType["user"]>(MOCKED_USER);
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
 
-  const login = (name: string, email: string, avatarUrl: string) => {
-    setUser({ id: "1", name, email, avatarUrl });
+  const login: AppContextType["login"] = (user) => {
+    setUser({
+      id: "1",
+      name: user.name,
+      email: user.email,
+      avatarUrl: user.avatarUrl,
+      userType: user.userType,
+    });
     setIsAuthenticated(true);
   };
 
