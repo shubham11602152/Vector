@@ -10,13 +10,13 @@ function LandingPage() {
   const navigate = useNavigate();
   const { isAuthenticated } = useAppContext();
 
-  function handleGetStarted() {
+  const handleGetStarted = () => {
     if (isAuthenticated) {
       navigate("/dashboard");
       return;
     }
     navigate("/onboarding");
-  }
+  };
 
   return (
     <VerticalLayout>
