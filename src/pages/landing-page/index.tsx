@@ -1,4 +1,5 @@
 import VerticalLayout from "@/components/layouts/vertical-layout";
+import FunnelDialog from "@/components/funnel-dialog";
 import Banner from "@/components/banner";
 import useAppContext from "@/context/useAppContext";
 import TestimonialSection from "./components/testimonial-section";
@@ -32,6 +33,12 @@ function LandingPage() {
           </>
         )}
         textColor={theme === "dark" ? "#F9FAFB" : "#000000"}
+      />
+      <FunnelDialog
+        onSubmit={(data) => {
+          // You can replace this with your own submit logic
+          console.log("Funnel form submitted:", data);
+        }}
       />
       <VerticalLayout>
         {/* Silk background covers header + hero */}
