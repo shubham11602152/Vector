@@ -1,13 +1,16 @@
 import VerticalLayout from "@/components/layouts/vertical-layout";
+import Banner from "@/components/banner";
+import useAppContext from "@/context/useAppContext";
 import TestimonialSection from "./components/testimonial-section";
 import { HeroBackground, HeroContent } from "./components/hero-section";
 import { useNavigate } from "react-router-dom";
 import PricingSection from "./components/pricing-section";
 import ServicesSection from "./components/services-section/index";
-import useAppContext from "@/context/useAppContext";
 import AboutUsSection from "./components/about-us-section";
+import { useTheme } from "@/components/use-theme";
 
 function LandingPage() {
+  const { theme } = useTheme();
   const navigate = useNavigate();
   const { isAuthenticated } = useAppContext();
 
@@ -21,6 +24,15 @@ function LandingPage() {
 
   return (
     <>
+      <Banner
+        message={() => (
+          <>
+            Black Friday Sale! Get 50% off on all premium plans. Use code{" "}
+            <b>"BLACKFRIDAY"</b> at checkout.
+          </>
+        )}
+        textColor={theme === "dark" ? "#F9FAFB" : "#000000"}
+      />
       <VerticalLayout>
         {/* Silk background covers header + hero */}
         <div className="absolute inset-0 -z-10 w-full h-[700px] md:h-[700px] invert brightness-80 dark:invert-0 ">
