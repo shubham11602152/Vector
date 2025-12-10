@@ -22,10 +22,42 @@ interface FunnelDialogProps {
     email: string;
     phone: string;
     occupation: string;
+    city: string;
+    state: string;
   }) => void;
 }
 
 const occupations = ["Student", "Professional", "Business"];
+const states = [
+  "Maharashtra",
+  "Karnataka",
+  "Tamil Nadu",
+  "Delhi",
+  "West Bengal",
+  "Uttar Pradesh",
+  "Gujarat",
+  "Rajasthan",
+  "Punjab",
+  "Kerala",
+];
+const citiesByState: Record<string, string[]> = {
+  Maharashtra: ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"],
+  Karnataka: ["Bengaluru", "Mysuru", "Mangalore", "Hubli", "Belgaum"],
+  "Tamil Nadu": [
+    "Chennai",
+    "Coimbatore",
+    "Madurai",
+    "Tiruchirappalli",
+    "Salem",
+  ],
+  Delhi: ["New Delhi", "Dwarka", "Rohini", "Saket", "Karol Bagh"],
+  "West Bengal": ["Kolkata", "Howrah", "Durgapur", "Siliguri", "Asansol"],
+  "Uttar Pradesh": ["Lucknow", "Kanpur", "Noida", "Agra", "Varanasi"],
+  Gujarat: ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Gandhinagar"],
+  Rajasthan: ["Jaipur", "Jodhpur", "Udaipur", "Kota", "Ajmer"],
+  Punjab: ["Ludhiana", "Amritsar", "Jalandhar", "Patiala", "Bathinda"],
+  Kerala: ["Kochi", "Thiruvananthapuram", "Kozhikode", "Thrissur", "Alappuzha"],
+};
 
 const FunnelDialog: React.FC<FunnelDialogProps> = ({ onSubmit }) => {
   const [open, setOpen] = useState(false);
@@ -35,6 +67,8 @@ const FunnelDialog: React.FC<FunnelDialogProps> = ({ onSubmit }) => {
     email: "",
     phone: "",
     occupation: occupations[0],
+    state: states[0],
+    city: citiesByState[states[0]][0],
   });
 
   useEffect(() => {
@@ -42,9 +76,7 @@ const FunnelDialog: React.FC<FunnelDialogProps> = ({ onSubmit }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -58,7 +90,7 @@ const FunnelDialog: React.FC<FunnelDialogProps> = ({ onSubmit }) => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="max-w-md mx-auto">
+      <DialogContent className="sm:max-w-md mx-auto">
         <DialogHeader>
           <DialogTitle>Tell us about yourself</DialogTitle>
         </DialogHeader>
@@ -120,6 +152,47 @@ const FunnelDialog: React.FC<FunnelDialogProps> = ({ onSubmit }) => {
                 {occupations.map((occ) => (
                   <SelectItem key={occ} value={occ}>
                     {occ}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <Select
+              value={form.state}
+              onValueChange={(value) =>
+                setForm((prev) => ({
+                  ...prev,
+                  state: value,
+                  city: citiesByState[value][0],
+                }))
+              }
+              required
+            >
+              <SelectTrigger className="w-full mt-4">
+                <SelectValue placeholder="Select state" />
+              </SelectTrigger>
+              <SelectContent>
+                {states.map((state) => (
+                  <SelectItem key={state} value={state}>
+                    {state}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            <Select
+              value={form.city}
+              onValueChange={(value) =>
+                setForm((prev) => ({ ...prev, city: value }))
+              }
+              required
+            >
+              <SelectTrigger className="w-full mt-4">
+                <SelectValue placeholder="Select city" />
+              </SelectTrigger>
+              <SelectContent>
+                {citiesByState[form.state].map((city) => (
+                  <SelectItem key={city} value={city}>
+                    {city}
                   </SelectItem>
                 ))}
               </SelectContent>
