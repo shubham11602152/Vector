@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/sidebar";
 import type { User } from "@/context/AppContext.types";
 
-export function NavUser({ user }: { user: User }) {
+export function NavUser({ user }: { user: User | null }) {
   const { isMobile } = useSidebar();
   const fullName = `${user?.firstName ?? ""} ${user?.lastName ?? ""}`;
 
