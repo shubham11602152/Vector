@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { ModeToggle } from "../ui/mode-toggle";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import useAppContext from "@/context/useAppContext";
 
 export default function Header() {
   const navigate = useNavigate();
+  const { user } = useAppContext();
 
   const handleClickGetStarted = () => {
     navigate("/onboarding");
@@ -37,7 +39,7 @@ export default function Header() {
             Login / Signup
           </Button>
           <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarImage src={user?.avatarUrl} />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
         </div>

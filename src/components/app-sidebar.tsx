@@ -1,10 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { ChartAreaIcon, MapIcon, StarIcon, User } from "lucide-react";
+import { Target, MapIcon, StarIcon, User } from "lucide-react";
 
 import {
   IconDashboard,
+  IconEyeSpark,
   IconHelp,
   IconInnerShadowTop,
   IconSearch,
@@ -42,7 +43,12 @@ const data = {
     {
       title: "Skill Tracker",
       url: "/skill-tracker",
-      icon: ChartAreaIcon,
+      icon: Target,
+    },
+    {
+      title: "Sneak Peers",
+      url: "/sneak-peers",
+      icon: IconEyeSpark,
     },
     {
       title: "Portfolio",
