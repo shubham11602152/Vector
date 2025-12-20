@@ -7,6 +7,7 @@ import DashboardPage from "./pages/dashboard-page";
 import NotFoundPage from "./pages/not-found-page";
 import OnboardingFlow from "./pages/onboarding";
 import ProfilePage from "./pages/profile-page";
+import SneakPeers from "./pages/sneak-peers-page";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/career-map" element={<DashboardPage />} />
       <Route path="/skill-tracker" element={<DashboardPage />} />
       <Route path="/portfolio" element={<DashboardPage />} />
+      <Route path="/sneak-peers" element={<SneakPeers />} />
       <Route path="/mentor" element={<DashboardPage />} />
       <Route path="/opportunity" element={<DashboardPage />} />
       <Route path="/profile" element={<ProfilePage />} />
