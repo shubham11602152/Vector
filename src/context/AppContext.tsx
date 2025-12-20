@@ -8,8 +8,10 @@ import type {
 const AppContext = React.createContext<AppContextType | undefined>(undefined);
 const MOCKED_USER = {
   id: "1",
-  name: "Shubham Mehta",
-  email: "shubham.mehta@gmail.com",
+  firstName: "Harjeet",
+  lastName: "Singh",
+  phone: "123-456-7890",
+  email: "harjeet.singh@gmail.com",
   avatarUrl: "https://github.com/shadcn.png",
 };
 export const AppContextProvider: React.FC<AppContextProviderProps> = ({
@@ -22,8 +24,10 @@ export const AppContextProvider: React.FC<AppContextProviderProps> = ({
   const login: AppContextType["login"] = (user) => {
     setUser({
       id: "1",
-      name: user.name,
+      firstName: user.firstName,
+      lastName: user.lastName,
       email: user.email,
+      phone: user.phone,
       avatarUrl: user.avatarUrl,
       userType: user.userType,
     });

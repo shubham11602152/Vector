@@ -6,6 +6,7 @@ import LandingPage from "./pages/landing-page";
 import DashboardPage from "./pages/dashboard-page";
 import NotFoundPage from "./pages/not-found-page";
 import OnboardingFlow from "./pages/onboarding";
+import ProfilePage from "./pages/profile-page";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/portfolio" element={<DashboardPage />} />
       <Route path="/mentor" element={<DashboardPage />} />
       <Route path="/opportunity" element={<DashboardPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
