@@ -15,7 +15,7 @@ const DashboardPage: React.FC = () => {
       title: "Profile",
       content: (
         <div className="flex items-center gap-4">
-          <Avatar>
+          <Avatar className="size-30">
             <AvatarImage src={user?.avatarUrl} />
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
