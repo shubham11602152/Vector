@@ -8,21 +8,36 @@ import NotFoundPage from "./pages/not-found-page";
 import OnboardingFlow from "./pages/onboarding";
 import ProfilePage from "./pages/profile-page";
 import SneakPeers from "./pages/sneak-peers-page";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+
+function DashboardRoutes() {
+  return (
+    <SidebarProvider>
+      <AppSidebar />
+      <Routes>
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/career-map" element={<DashboardPage />} />
+        <Route path="/skill-tracker" element={<DashboardPage />} />
+        <Route path="/portfolio" element={<DashboardPage />} />
+        <Route path="/sneak-peers" element={<SneakPeers />} />
+        <Route path="/mentor" element={<DashboardPage />} />
+        <Route path="/opportunity" element={<DashboardPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+      </Routes>
+    </SidebarProvider>
+  );
+}
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/onboarding" element={<OnboardingFlow />} />
-      <Route path="/dashboard" element={<DashboardPage />} />
-      <Route path="/career-map" element={<DashboardPage />} />
-      <Route path="/skill-tracker" element={<DashboardPage />} />
-      <Route path="/portfolio" element={<DashboardPage />} />
-      <Route path="/sneak-peers" element={<SneakPeers />} />
-      <Route path="/mentor" element={<DashboardPage />} />
-      <Route path="/opportunity" element={<DashboardPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/" element={<LandingPage />} />
+      {/* Dashboard routes with persistent sidebar */}
+      <Route path="/*" element={<DashboardRoutes />} />
+      {/* NotFound Page route should be placed at the end */}
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
