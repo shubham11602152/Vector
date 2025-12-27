@@ -35,9 +35,9 @@ function LandingPage() {
         textColor={theme === "dark" ? "#F9FAFB" : "#000000"}
       />
       <FunnelDialog
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         onSubmit={(data) => {
           // You can replace this with your own submit logic
-          console.log("Funnel form submitted:", data);
         }}
       />
       <VerticalLayout>
