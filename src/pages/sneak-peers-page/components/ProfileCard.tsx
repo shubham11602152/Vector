@@ -23,7 +23,7 @@ export default function UserProfileCard({
   avatarUrl: string;
 }) {
   return (
-    <Card className="flex items-center p-4 max-w-sm max-h-fit gap-4 flex-col">
+    <Card className="flex items-center min-w-[200px] p-4 gap-4 flex-col">
       <Avatar className="size-30">
         <AvatarImage src={avatarUrl} alt="avatar" />
         <AvatarFallback>
@@ -38,7 +38,7 @@ export default function UserProfileCard({
         <TypographyLarge>{occupation}</TypographyLarge>
       </TypographyMuted>
       <TypographyMuted>{email}</TypographyMuted>
-      <Button variant="secondary" size="lg" className="group w-full">
+      <Button variant="secondary" size="lg" className="group w-full mt-auto">
         Request
         <ArrowRightIcon className="transition-transform duration-200 group-hover:translate-x-0.5" />
       </Button>
