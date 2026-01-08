@@ -4,8 +4,10 @@ type UserType = "student" | "institute" | "admin";
 
 type User = {
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
+  phone: string;
   avatarUrl: string;
   userType?: UserType;
 };
@@ -23,4 +25,4 @@ type AppContextProviderProps = {
   children: React.ReactNode;
 };
 
-export type { UserType, AppContextType, AppContextProviderProps };
+export type { UserType, User, AppContextType, AppContextProviderProps };

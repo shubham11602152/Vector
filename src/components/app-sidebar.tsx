@@ -1,10 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { ChartAreaIcon, MapIcon, StarIcon, User } from "lucide-react";
+import { Target, MapIcon, StarIcon, User } from "lucide-react";
 
 import {
   IconDashboard,
+  IconEyeSpark,
   IconHelp,
   IconInnerShadowTop,
   IconSearch,
@@ -26,6 +27,7 @@ import {
 } from "@/components/ui/sidebar";
 import useAppContext from "@/context/useAppContext";
 import { NavSecondary } from "./nav-secondary";
+import { Link } from "react-router-dom";
 
 const data = {
   navMain: [
@@ -42,7 +44,12 @@ const data = {
     {
       title: "Skill Tracker",
       url: "/skill-tracker",
-      icon: ChartAreaIcon,
+      icon: Target,
+    },
+    {
+      title: "Sneak Peers",
+      url: "/sneak-peers",
+      icon: IconEyeSpark,
     },
     {
       title: "Portfolio",
@@ -90,10 +97,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <a href="/">
+              <Link to="/">
                 <IconInnerShadowTop className="!size-5" />
                 <span className="text-base font-semibold">Vector</span>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
