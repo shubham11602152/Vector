@@ -5,7 +5,7 @@ import { useId, useState } from "react";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+// import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
@@ -150,7 +150,7 @@ const RegisterForm = () => {
       </div>
 
       {/* Privacy policy */}
-      <div className="flex items-center gap-3">
+      {/* <div className="flex items-center gap-3">
         <Checkbox
           id="agreeToTerms"
           name="agreeToTerms"
@@ -163,7 +163,7 @@ const RegisterForm = () => {
           <span className="text-muted-foreground">I agree to</span>{" "}
           <a href="#">privacy policy & terms</a>
         </Label>
-      </div>
+      </div> */}
 
       <Button className="w-full" type="submit">
         Sign Up

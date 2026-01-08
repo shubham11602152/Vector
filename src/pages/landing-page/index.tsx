@@ -38,6 +38,8 @@ function LandingPage() {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         onSubmit={(data) => {
           // You can replace this with your own submit logic
+          // eslint-disable-next-line no-console
+          console.log("Funnel Data Submitted:", data);
         }}
       />
       <VerticalLayout>
