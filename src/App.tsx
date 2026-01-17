@@ -1,50 +1,45 @@
-import "./App.css";
+import "./index.css";
+import { useEffect } from "react";
+import useAppContext from "@/hooks/useAppContext";
+import { supabase } from "./supabase-client";
+import AppRoutes from "./app-routes";
 
-import { Routes, Route, Navigate } from "react-router-dom";
-import LoginPage from "./pages/login-page";
-import LandingPage from "./pages/landing-page";
-import DashboardPage from "./pages/dashboard-page";
-import NotFoundPage from "./pages/not-found-page";
-import OnboardingFlow from "./pages/onboarding";
-import ProfilePage from "./pages/profile-page";
-import SneakPeers from "./pages/sneak-peers-page";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
-import RegisterPage from "./pages/register-page";
+export default function App() {
+  const { session, setSession, setUser } = useAppContext();
 
-function DashboardRoutes() {
-  return (
-    <SidebarProvider>
-      <AppSidebar />
-      <Routes>
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/career-map" element={<DashboardPage />} />
-        <Route path="/skill-tracker" element={<DashboardPage />} />
-        <Route path="/portfolio" element={<DashboardPage />} />
-        <Route path="/sneak-peers" element={<SneakPeers />} />
-        <Route path="/mentor" element={<DashboardPage />} />
-        <Route path="/opportunity" element={<DashboardPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/*" element={<Navigate to="/404-not-found" replace />} />
-      </Routes>
-    </SidebarProvider>
-  );
+  useEffect(() => {
+    // Check for existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      if (session) {
+        const {
+          user: {
+            id,
+            role,
+            user_metadata: { email, phone, first_name, last_name },
+          },
+        } = session;
+        setUser({
+          id: id,
+          firstName: first_name,
+          lastName: last_name,
+          email: email,
+          phone: phone,
+          avatarUrl: "https://github.com/shadcn.png",
+          role: role,
+        });
+      }
+    });
+
+    // Listen for auth changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  return <AppRoutes session={session} />;
 }
-
-function App() {
-  return (
-    <Routes>
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/signup" element={<RegisterPage />} />
-      <Route path="/onboarding" element={<OnboardingFlow />} />
-      <Route path="/" element={<LandingPage />} />
-      {/* Dashboard routes with persistent sidebar */}
-      <Route path="/*" element={<DashboardRoutes />} />
-      {/* NotFound Page route should be placed at the end */}
-      <Route path="*" element={<NotFoundPage />} />
-      <Route path="/404-not-found" element={<NotFoundPage />} />
-    </Routes>
-  );
-}
-
-export default App;

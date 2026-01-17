@@ -1,19 +1,41 @@
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
+import useAppContext from "@/hooks/useAppContext";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const { login } = useAppContext();
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleOnSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    login(formData);
+  };
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden p-0">
         <CardContent className="grid p-0 md:grid-cols-2">
-          <form className="p-6 md:p-8">
+          <form className="p-6 md:p-8" onSubmit={handleOnSubmit}>
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-bold">Welcome back</h1>
@@ -26,7 +48,10 @@ export function LoginForm({
                 <Input
                   id="email"
                   type="email"
+                  name="email"
+                  value={formData.email}
                   placeholder="m@example.com"
+                  onChange={handleInputChange}
                   required
                 />
               </div>
@@ -40,7 +65,31 @@ export function LoginForm({
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <div className="relative">
+                  <Input
+                    id="password"
+                    name="password"
+                    onChange={handleInputChange}
+                    value={formData.password}
+                    type={isPasswordVisible ? "text" : "password"}
+                    placeholder="••••••••••••••••"
+                    className="pr-9"
+                    required
+                  />
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() =>
+                      setIsPasswordVisible((prevState) => !prevState)
+                    }
+                    className="text-muted-foreground focus-visible:ring-ring/50 absolute inset-y-0 right-0 rounded-l-none hover:bg-transparent"
+                  >
+                    {isPasswordVisible ? <EyeOffIcon /> : <EyeIcon />}
+                    <span className="sr-only">
+                      {isPasswordVisible ? "Hide password" : "Show password"}
+                    </span>
+                  </Button>
+                </div>
               </div>
               <Button type="submit" className="w-full">
                 Login

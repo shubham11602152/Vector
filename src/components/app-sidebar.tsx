@@ -25,7 +25,6 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import useAppContext from "@/context/useAppContext";
 import { NavSecondary } from "./nav-secondary";
 import { Link } from "react-router-dom";
 
@@ -87,7 +86,6 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { user } = useAppContext();
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -110,7 +108,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={user} />
+        <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
