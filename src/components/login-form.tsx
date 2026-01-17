@@ -79,9 +79,10 @@ export function LoginForm({
                   <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() =>
-                      setIsPasswordVisible((prevState) => !prevState)
-                    }
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsPasswordVisible((prevState) => !prevState);
+                    }}
                     className="text-muted-foreground focus-visible:ring-ring/50 absolute inset-y-0 right-0 rounded-l-none hover:bg-transparent"
                   >
                     {isPasswordVisible ? <EyeOffIcon /> : <EyeIcon />}
