@@ -1,5 +1,4 @@
 import React, { useState, useMemo, Suspense } from "react";
-import DashboardLayout from "@/components/layouts/dashboard-layout";
 
 import { useId } from "react";
 
@@ -81,7 +80,7 @@ const SneakPeers = () => {
   }, [search]);
 
   return (
-    <DashboardLayout>
+    <>
       <InputSearchWithIcon value={search} onChange={setSearch} />
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-16">
         {paginatedUsers.length > 0 ? (
@@ -103,7 +102,7 @@ const SneakPeers = () => {
           onPageChange={setPage}
         />
       )}
-    </DashboardLayout>
+    </>
   );
 };
 

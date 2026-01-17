@@ -1,24 +1,37 @@
 "use client";
 
 import { useId, useState } from "react";
-
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 // import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { validatePassword } from "./utils";
 
-const RegisterForm = () => {
+interface RegisterFormProps {
+  onSignUp: (formData: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    password: string;
+    confirmPassword: string;
+    agreeToTerms: boolean;
+  }) => void;
+}
+
+const RegisterForm: React.FC<RegisterFormProps> = ({ onSignUp }) => {
   const id = useId();
   const [formData, setFormData] = useState({
-    username: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     password: "",
     confirmPassword: "",
     agreeToTerms: false,
   });
+  const [formError, setFormError] = useState<string | null>(null);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
     useState(false);
@@ -31,20 +44,50 @@ const RegisterForm = () => {
     }));
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const errors = validatePassword(
+      formData.password,
+      formData.confirmPassword
+    );
+    if (errors.length > 0) {
+      setFormError(errors[0]); // Show the first error
+      return;
+    }
+    setFormError(null);
+    onSignUp(formData);
+  };
+
   return (
-    <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+    <form className="space-y-4" onSubmit={handleSubmit}>
       {/* Username */}
       <div className="space-y-1">
-        <Label className="leading-5" htmlFor="username">
-          Username*
+        <Label className="leading-5" htmlFor="firstName">
+          First Name*
         </Label>
         <Input
           type="text"
-          id="username"
-          name="username"
-          placeholder="Enter your username"
+          id="firstName"
+          name="firstName"
+          placeholder="Enter your first name"
           required
-          value={formData.username}
+          value={formData.firstName}
+          onChange={handleInputChange}
+        />
+      </div>
+
+      {/* Last Name */}
+      <div className="space-y-1">
+        <Label className="leading-5" htmlFor="lastName">
+          Last Name*
+        </Label>
+        <Input
+          type="text"
+          id="lastName"
+          name="lastName"
+          placeholder="Enter your last name"
+          required
+          value={formData.lastName}
           onChange={handleInputChange}
         />
       </div>
@@ -106,7 +149,10 @@ const RegisterForm = () => {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setIsPasswordVisible((prevState) => !prevState)}
+            onClick={(e) => {
+              e.preventDefault();
+              setIsPasswordVisible((prevState) => !prevState);
+            }}
             className="text-muted-foreground focus-visible:ring-ring/50 absolute inset-y-0 right-0 rounded-l-none hover:bg-transparent"
           >
             {isPasswordVisible ? <EyeOffIcon /> : <EyeIcon />}
@@ -136,9 +182,10 @@ const RegisterForm = () => {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() =>
-              setIsConfirmPasswordVisible((prevState) => !prevState)
-            }
+            onClick={(e) => {
+              e.preventDefault();
+              setIsConfirmPasswordVisible((prevState) => !prevState);
+            }}
             className="text-muted-foreground focus-visible:ring-ring/50 absolute inset-y-0 right-0 rounded-l-none hover:bg-transparent"
           >
             {isConfirmPasswordVisible ? <EyeOffIcon /> : <EyeIcon />}
@@ -164,6 +211,8 @@ const RegisterForm = () => {
           <a href="#">privacy policy & terms</a>
         </Label>
       </div> */}
+
+      {formError && <div className="text-red-500 text-sm">{formError}</div>}
 
       <Button className="w-full" type="submit">
         Sign Up

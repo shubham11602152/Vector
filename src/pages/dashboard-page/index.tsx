@@ -2,9 +2,9 @@ import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import DashboardLayout from "@/components/layouts/dashboard-layout";
 import { useNavigate } from "react-router-dom";
-import useAppContext from "@/context/useAppContext";
+import useAppContext from "@/hooks/useAppContext";
+import { TypographyP } from "@/components/ui/typography";
 
 const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const DashboardPage: React.FC = () => {
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
           <div>
-            <div className="font-semibold">
+            <div className="font-semibold capitalize">
               {user?.firstName} {user?.lastName}
             </div>
             <div className="text-sm text-muted-foreground">{user?.email}</div>
@@ -73,7 +73,14 @@ const DashboardPage: React.FC = () => {
   ];
 
   return (
-    <DashboardLayout>
+    <>
+      <div className="my-12">
+        <h2 className="text-5xl  capitalize font-extrabold text-balance">
+          Welcome! {user?.firstName} 🌼
+        </h2>
+        <TypographyP>Access your career dashboard</TypographyP>
+      </div>
+
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {widgets.map((widget, idx) => (
           <Card key={idx}>
@@ -84,7 +91,7 @@ const DashboardPage: React.FC = () => {
           </Card>
         ))}
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

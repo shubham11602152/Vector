@@ -2,6 +2,7 @@ import VerticalLayout from "@/components/layouts/vertical-layout";
 import RegisterForm from "@/components/register-form";
 // import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { signUp } from "@/supabase-client";
 // import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
 
@@ -28,7 +29,7 @@ const RegisterPage = () => {
             </div>
             {/* Register Form */}
             <div className="p-6 md:p-8">
-              <RegisterForm />
+              <RegisterForm onSignUp={signUp} />
 
               <p className="text-muted-foreground text-center text-sm mt-2">
                 Already have an account?{" "}

@@ -1,6 +1,6 @@
 // Define your context properties and their types here
 
-type UserType = "student" | "institute" | "admin";
+type UserType = "student" | "institute" | "admin" | string;
 
 type User = {
   id: string;
@@ -9,15 +9,22 @@ type User = {
   email: string;
   phone: string;
   avatarUrl: string;
-  userType?: UserType;
+  role?: UserType;
+};
+
+type Credentials = {
+  email: string;
+  password: string;
 };
 
 type AppContextType = {
   user: User | null;
+  session: unknown;
   isAuthenticated: boolean;
-  login: (user: User) => void;
+  login: (credentials: Credentials) => void;
   logout: () => void;
   setUser: (user: User | null) => void;
+  setSession: (session: unknown) => void;
   navigate: (path: string) => void;
 };
 

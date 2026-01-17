@@ -1,14 +1,14 @@
 import VerticalLayout from "@/components/layouts/vertical-layout";
 import FunnelDialog from "@/components/funnel-dialog";
 import Banner from "@/components/banner";
-import useAppContext from "@/context/useAppContext";
+import useAppContext from "@/hooks/useAppContext";
+import { useTheme } from "@/hooks/use-theme";
 import TestimonialSection from "./components/testimonial-section";
 import { HeroBackground, HeroContent } from "./components/hero-section";
 import { useNavigate } from "react-router-dom";
 import PricingSection from "./components/pricing-section";
 import ServicesSection from "./components/services-section/index";
 import AboutUsSection from "./components/about-us-section";
-import { useTheme } from "@/components/use-theme";
 
 function LandingPage() {
   const { theme } = useTheme();

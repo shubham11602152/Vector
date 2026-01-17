@@ -1,13 +1,13 @@
 // ...existing code...
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
-import { ModeToggle } from "../ui/mode-toggle";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import useAppContext from "@/context/useAppContext";
+import { ModeToggle } from "@/components/ui/mode-toggle";
+import useAppContext from "@/hooks/useAppContext";
+import { UserAvatarMenu } from "@/components/nav-user";
 
 export default function Header() {
   const navigate = useNavigate();
-  const { user } = useAppContext();
+  const { isAuthenticated } = useAppContext();
 
   const handleClickGetStarted = () => {
     navigate("/onboarding");
@@ -31,17 +31,17 @@ export default function Header() {
           >
             Get Started
           </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => navigate("/login")}
-          >
-            Login / Signup
-          </Button>
-          <Avatar>
-            <AvatarImage src={user?.avatarUrl} />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
+          {isAuthenticated ? (
+            <UserAvatarMenu compact />
+          ) : (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => navigate("/login")}
+            >
+              Login / Signup
+            </Button>
+          )}
         </div>
       </div>
     </header>
