@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { SidebarInset } from "@/components/ui/sidebar";
-import { SiteHeader } from "@/components/site-header";
+import DashboardHeader from "@/components/ui-blocks/dashboard-header";
 
 type DashboardLayoutProps = {
   children: ReactNode;
@@ -10,7 +10,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <>
       <SidebarInset>
-        <SiteHeader />
+        <DashboardHeader />
         <main className="min-h-[calc(100vh-4rem)] px-4 py-4">
           {children}
           {/* <div className="flex flex-1 flex-col gap-4 p-4">
