@@ -4,7 +4,7 @@ import type { OnboardingType } from "./OnboardingType";
 import ProfileForm from "./ProfileForm";
 import EducationForm from "./EducationForm";
 import VerticalLayout from "@/components/layouts/vertical-layout";
-import useAppContext from "@/context/useAppContext";
+import useAppContext from "@/hooks/useAppContext";
 
 export default function OnboardingFlow() {
   const { navigate } = useAppContext();

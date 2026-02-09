@@ -6,6 +6,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { useNavigate } from "react-router-dom";
 import { type IconProps as TablerIconProps } from "@tabler/icons-react";
@@ -27,9 +28,11 @@ export function NavMain({
   }[];
 }) {
   const navigate = useNavigate();
+  const { setOpenMobile } = useSidebar();
 
   const handleNavigation = (url: string) => () => {
     navigate(url);
+    setOpenMobile(false);
   };
   return (
     <SidebarGroup>

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import useAppContext from "@/context/useAppContext";
+import useAppContext from "@/hooks/useAppContext";
 import type { User } from "@/context/AppContext.types";
 import DashboardLayout from "@/components/layouts/dashboard-layout";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
